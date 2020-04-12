@@ -196,7 +196,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: bea8f3732c510fa45b5baadec1414b32, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5b02120e968de394297bdecccc8901b2, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -278,6 +278,7 @@ MonoBehaviour:
   text: {fileID: 5985513513638363172}
   UIscript: {fileID: 0}
   itemDB: {fileID: 0}
+  CloseButton: {fileID: 0}
 --- !u!1 &5985513513106536649
 GameObject:
   m_ObjectHideFlags: 0
