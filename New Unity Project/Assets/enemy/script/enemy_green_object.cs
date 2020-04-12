@@ -7,17 +7,20 @@ public class enemy_green_object : MonoBehaviour
 {
     public EnemyHealth health;
 
-    public GameObject head;
-    public GameObject chest;
-    public GameObject back;
-    public GameObject rtUpperArms;
-    public GameObject ltUpperArms;
-    public GameObject rtLowerArms;
-    public GameObject ltLowerArms;
-    public GameObject rtlegs;
-    public GameObject ltlegs;
-    public GameObject baton;
-    public GameObject shield;
+    public GameObject[] bodypart;
+    public CommonScript commonscript;
+
+    //public GameObject head;
+    //public GameObject chest;
+    //public GameObject back;
+    //public GameObject rtUpperArms;
+    //public GameObject ltUpperArms;
+    //public GameObject rtLowerArms;
+    //public GameObject ltLowerArms;
+    //public GameObject rtlegs;
+    //public GameObject ltlegs;
+    //public GameObject baton;
+    //public GameObject shield;
     public GameObject blood;
     public GameObject bloodparticle;
 
@@ -212,21 +215,20 @@ void OnCollisionEnter2D(Collision2D collision)
 
     void OnDestroy()
     {
+        commonscript.BodyBreakDown(bodypart, transform.position);
+        //Instantiate(head, transform.position, Quaternion.identity);
+        //Instantiate(chest, transform.position, Quaternion.identity);
+        //Instantiate(back, transform.position, Quaternion.identity);
+        //Instantiate(rtUpperArms, transform.position, Quaternion.identity);
+        //Instantiate(rtLowerArms, transform.position, Quaternion.identity);
+        //Instantiate(ltUpperArms, transform.position, Quaternion.identity);
+        //Instantiate(ltLowerArms, transform.position, Quaternion.identity);
+        //Instantiate(rtlegs, transform.position, Quaternion.identity);
+        //Instantiate(ltlegs, transform.position, Quaternion.identity);
+        //Instantiate(baton, transform.position, Quaternion.identity);
+        //Instantiate(shield, transform.position, Quaternion.identity);
 
-
-        Instantiate(head, transform.position, Quaternion.identity);
-        Instantiate(chest, transform.position, Quaternion.identity);
-        Instantiate(back, transform.position, Quaternion.identity);
-        Instantiate(rtUpperArms, transform.position, Quaternion.identity);
-        Instantiate(rtLowerArms, transform.position, Quaternion.identity);
-        Instantiate(ltUpperArms, transform.position, Quaternion.identity);
-        Instantiate(ltLowerArms, transform.position, Quaternion.identity);
-        Instantiate(rtlegs, transform.position, Quaternion.identity);
-        Instantiate(ltlegs, transform.position, Quaternion.identity);
-        Instantiate(baton, transform.position, Quaternion.identity);
-        Instantiate(shield, transform.position, Quaternion.identity);
-
-
+        
 
     }
 
