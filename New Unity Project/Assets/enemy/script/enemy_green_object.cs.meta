@@ -1,0 +1,30 @@
+fileFormatVersion: 2
+guid: 9c847b1e310b8b2459347eaadfd7667b
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - head: {fileID: 1858430381444671884, guid: 554a20737573a1543a9fc6f1bf5a7139, type: 3}
+  - chest: {fileID: 7788821779705311193, guid: 4ea17a53ee4612b4dbd71961a160bc87, type: 3}
+  - back: {fileID: 8557037218853977358, guid: f49d568e2a4f2d74483fb96f05561603, type: 3}
+  - rtUpperArms: {fileID: 3947874103562937933, guid: 3b799f89b5f91ca478220905b7aae0be,
+      type: 3}
+  - ltUpperArms: {fileID: 8626736857815487684, guid: 6b1b96dfdd2458a45b56db0802e4e77c,
+      type: 3}
+  - rtLowerArms: {fileID: 1470186088839777572, guid: 5fd7e9e57a6a3934f8cb80b1d410ab63,
+      type: 3}
+  - ltLowerArms: {fileID: 5410884483552527381, guid: 5ed36914776369944acd3f5821e85d76,
+      type: 3}
+  - rtlegs: {fileID: 7553006467265694171, guid: d82c2a2b30996114b9f21fc71c862533,
+      type: 3}
+  - ltlegs: {fileID: 2217868484795414970, guid: aee1a286be1f6dc48a98aad6336e0cd5,
+      type: 3}
+  - baton: {fileID: 7249153007538470894, guid: 3a8a4842bdc0f58428022075b8b2a6d7, type: 3}
+  - shield: {fileID: 1391890632947339791, guid: c45c033b4b4efc342a310efcd95e0efa,
+      type: 3}
+  - blood: {fileID: 1209856041905531987, guid: a4f42c47d85414e489e057b39292f9ec, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
