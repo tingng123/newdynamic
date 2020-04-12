@@ -22,20 +22,6 @@ public class patrol : StateMachineBehaviour
 
 
 
-        if (attackrange < Vector2.Distance(animator.transform.position, target.position)  && Vector2.Distance(animator.transform.position, target.position) < stoppingDistance)
-        {
-            animator.SetBool("patrol", false);
-            animator.SetBool("chasing", true);
-
-        }
-
-        if (Vector2.Distance(animator.transform.position, target.position) < attackrange)
-        {
-            animator.SetBool("patrol", false);
-            animator.SetBool("chasing", false);
-            animator.SetBool("attack", true);
-        }
-
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
