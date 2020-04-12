@@ -11,6 +11,7 @@ public class inventoryButton : MonoBehaviour
     public Text text;
     public UIscript UIscript;
     public ItemDB itemDB;
+    public Button CloseButton;
 
     private void Start()
     {
@@ -18,9 +19,11 @@ public class inventoryButton : MonoBehaviour
     }
     public void ButtonSetUp()
     {
+        CloseButton = gameObject.transform.GetChild(1).gameObject.GetComponent<Button>();
         if (this.gameObject.GetComponent<Item>() != null)
         {
             item = this.gameObject.GetComponent<Item>();
+            CloseButton.gameObject.SetActive(true);
         }
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         UIscript = GameObject.Find("MainCanvas").GetComponent<UIscript>();
@@ -29,6 +32,7 @@ public class inventoryButton : MonoBehaviour
         if (text.text == "0")
         {
             text.text = "";
+            CloseButton.gameObject.SetActive(false);
         }
     }
 
