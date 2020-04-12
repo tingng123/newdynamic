@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         itemDB = GameObject.Find("ItemDB").GetComponent<ItemDB>();
-        UIscript = GameObject.Find("Canvas").GetComponent<UIscript>();
+        UIscript = GameObject.Find("MainCanvas").GetComponent<UIscript>();
         droplocation = gameObject.transform.GetChild(0).gameObject;
     }
 

@@ -397,6 +397,9 @@ MonoBehaviour:
   reference: {fileID: 0}
   knockbackAmount: 2
   impulse: {x: 0, y: 0}
+  attackrange: 0
+  attackcooltime: 0
+  Timesinceattack: 0
 --- !u!70 &7862741679617463731
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -876,7 +879,7 @@ GameObject:
   - component: {fileID: 7862741680891375744}
   - component: {fileID: 7862741680891375745}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: GreenObjCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

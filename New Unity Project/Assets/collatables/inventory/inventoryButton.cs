@@ -23,7 +23,7 @@ public class inventoryButton : MonoBehaviour
             item = this.gameObject.GetComponent<Item>();
         }
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-        UIscript = GameObject.Find("Canvas").GetComponent<UIscript>();
+        UIscript = GameObject.Find("MainCanvas").GetComponent<UIscript>();
         text.text = player.stackamount[slotnumber].ToString();
         //reset stack number in UI
         if (text.text == "0")
