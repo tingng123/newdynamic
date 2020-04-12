@@ -62,8 +62,8 @@ MonoBehaviour:
   ID: 1
   ItemName: Glass Bottle
   icon: {fileID: 21300000, guid: bafa9ab1aac642c43ad83337931d2452, type: 3}
-  amount: 0
   maxamount: 10
+  type: Projectile
 --- !u!1001 &9189329357612217867
 PrefabInstance:
   m_ObjectHideFlags: 0

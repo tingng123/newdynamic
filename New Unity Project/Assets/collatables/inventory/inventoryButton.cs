@@ -12,18 +12,24 @@ public class inventoryButton : MonoBehaviour
     public UIscript UIscript;
     public ItemDB itemDB;
     public Button CloseButton;
+    public Button UseButton;
+    public GameObject EquipmentPanel;
 
     private void Start()
     {
         itemDB = GameObject.Find("ItemDB").GetComponent<ItemDB>();
+        EquipmentPanel = UIscript.gameObject.transform.Find("EquipmentPanel").gameObject;
     }
     public void ButtonSetUp()
     {
         CloseButton = gameObject.transform.GetChild(1).gameObject.GetComponent<Button>();
+        UseButton = gameObject.GetComponent<Button>();
+
         if (this.gameObject.GetComponent<Item>() != null)
         {
             item = this.gameObject.GetComponent<Item>();
             CloseButton.gameObject.SetActive(true);
+            UseButton.enabled = true;
         }
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         UIscript = GameObject.Find("MainCanvas").GetComponent<UIscript>();
@@ -33,6 +39,7 @@ public class inventoryButton : MonoBehaviour
         {
             text.text = "";
             CloseButton.gameObject.SetActive(false);
+            UseButton.enabled = false;
         }
     }
 
@@ -40,6 +47,14 @@ public class inventoryButton : MonoBehaviour
     {
         // to do: update item component
         Debug.Log("I used" + item.ItemName);
+        if (item.type == "Projectile")
+        {
+            Debug.Log("proj");
+            Image equipImg = EquipmentPanel.transform.Find("Equipped Image").GetComponent<Image>();
+            equipImg.enabled = true;
+            equipImg.sprite = item.icon;
+        }
+
         player.stackamount[slotnumber] -= 1;
         StackChecking();
         StartCoroutine(UIscript.inventoryReset());
@@ -60,9 +75,7 @@ public class inventoryButton : MonoBehaviour
         //check whether we used up all the stack
         if (player.stackamount[slotnumber] == 0)
         {
-            Debug.Log(slotnumber);
             player.inventory.RemoveAt(slotnumber) ;
-            Debug.Log("removed" + slotnumber);
             player.inventory.Add(null);
             player.stackamount.Remove(player.stackamount[slotnumber]);
             player.stackamount.Add(0);

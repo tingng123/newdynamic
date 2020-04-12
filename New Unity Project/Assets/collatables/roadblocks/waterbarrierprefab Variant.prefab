@@ -62,8 +62,8 @@ MonoBehaviour:
   ID: 0
   ItemName: roadblock_waterhorse
   icon: {fileID: -8628631289662865008, guid: 88d7fae1a0e05c443b25e654beb8303e, type: 3}
-  amount: 0
   maxamount: 10
+  type: Block
 --- !u!1001 &9189329357612217867
 PrefabInstance:
   m_ObjectHideFlags: 0

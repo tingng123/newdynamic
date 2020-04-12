@@ -57,6 +57,7 @@ public class UIscript : MonoBehaviour
                     temp.ItemName = inventory[i].ItemName;
                     temp.ID = inventory[i].ID;
                     temp.icon = inventory[i].icon;
+                    temp.type = inventory[i].type;
                     slots[i].image.sprite = temp.icon;
                     //set stack text
                     Text text = slots[i].gameObject.GetComponentInChildren<Text>();
