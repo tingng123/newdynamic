@@ -192,11 +192,15 @@ public class playercontroller : MonoBehaviour
 			if(player.EquippedItem != null && player.EquippedItem.type == "Projectile" && player.stackamount[player.EquippedSlotNumber] > 0)
 			{
 				player.stackamount[player.EquippedSlotNumber] -= 1;
-				player.StackChecking(player.EquippedSlotNumber);
 				if (player.StackChecking(player.EquippedSlotNumber) == false)
 				{
+					Debug.Log("used all");
 					player.EquippedItem = null;
 					player.EquippedSlotNumber = 100;
+				}
+				else
+				{
+					Debug.Log("still have");
 				}
 				StartCoroutine(uIscript.inventoryReset());
 
