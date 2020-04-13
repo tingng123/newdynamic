@@ -19,7 +19,6 @@ public class Item : MonoBehaviour
     //    Physics.IgnoreCollision(collision.collider2D, GetComponent<Collider>());
         if (collision.gameObject.tag == "Player" )
         {
-            Debug.Log(collision.name);
             collision.gameObject.GetComponent<Player>().additem(this.GetComponent<Item>().ID);
             Destroy(this.gameObject);
         }

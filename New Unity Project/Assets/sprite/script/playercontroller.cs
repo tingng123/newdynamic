@@ -61,17 +61,20 @@ public class playercontroller : MonoBehaviour
 	public float animCooldown = 1.0f;
 	public float timeSinceanim = 0.0f;
 
+	//CryOut: varaible for new equipment and attack system
+	public Player player;
+	public UIscript uIscript;
 
 	// Update is called once per frame
 
 	//	public AudioSource walk;
 
-	void start()
+
+	void Start()
 	{
 		//walk= GetComponent<AudioSource>();
-
-
-
+		player = this.GetComponent<Player>();
+		uIscript = GameObject.Find("MainCanvas").GetComponent<UIscript>();
 	}
 
 
@@ -153,12 +156,6 @@ public class playercontroller : MonoBehaviour
 			Debug.Log("attack");
 			anim.SetBool("attack", true);
 
-
-
-
-
-
-
 		}
 
 		///throw
@@ -185,7 +182,45 @@ public class playercontroller : MonoBehaviour
 			SoundManager.PlaySound(SoundManager.Sound.playerthrow);
 		}
 
+		//New attack system by CryOut
+		if (Input.GetKeyDown(KeyCode.Q))
+		{
+			if(player.EquippedItem == null) {
+				Debug.Log("no equippedItem");
+			}
+			Debug.Log("Attack Button (Projectile)");
+			if(player.EquippedItem != null && player.EquippedItem.type == "Projectile" && player.stackamount[player.EquippedSlotNumber] > 0)
+			{
+				player.stackamount[player.EquippedSlotNumber] -= 1;
+				player.StackChecking(player.EquippedSlotNumber);
+				if (player.StackChecking(player.EquippedSlotNumber) == false)
+				{
+					player.EquippedItem = null;
+					player.EquippedSlotNumber = 100;
+				}
+				StartCoroutine(uIscript.inventoryReset());
 
+				Debug.Log("checked");
+				Debug.Log("ThrowGlass");
+				anim.SetTrigger("throw");
+				timeSincethrowAction = 0f;
+				throwglass(0);
+				timeSinceanim = 0f;
+				SoundManager.PlaySound(SoundManager.Sound.playerthrow);
+
+				//checking stack remained
+				//player.EquippedStackAmount -= 1;
+				if (player.EquippedSlotNumber != 100)
+				{
+					uIscript.equipmentsetup(player.stackamount[player.EquippedSlotNumber]);
+				}
+				else
+				{
+					uIscript.equipmentsetup(100);
+				}
+			}
+
+		}
 
 		//
 		//	if(anim.GetBool("IsRunning"))

@@ -11,6 +11,9 @@ public class UIscript : MonoBehaviour
     public Player player;
     public Sprite buttonimg;
 
+    public Text ProjectileNumber;
+    public Image equipImg;
+
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
@@ -70,6 +73,19 @@ public class UIscript : MonoBehaviour
         {
             slots[i].gameObject.GetComponent<inventoryButton>().slotnumber = i;
             slots[i].gameObject.GetComponent<inventoryButton>().ButtonSetUp();
+        }
+    }
+
+    public void equipmentsetup(int stacknumber)
+    {
+        Debug.Log("equip set up");
+        ProjectileNumber.text = stacknumber.ToString();
+
+        if(stacknumber == 0 || stacknumber == 100)
+        {
+            ProjectileNumber.text = "";
+            equipImg.enabled = false;
+            equipImg.sprite = null;
         }
     }
 

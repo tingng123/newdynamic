@@ -45,41 +45,42 @@ public class inventoryButton : MonoBehaviour
 
     public void itemUse()
     {
-        // to do: update item component
         Debug.Log("I used" + item.ItemName);
         if (item.type == "Projectile")
         {
-            Debug.Log("proj");
-            Image equipImg = EquipmentPanel.transform.Find("Equipped Image").GetComponent<Image>();
-            equipImg.enabled = true;
-            equipImg.sprite = item.icon;
-        }
+            player.EquippedSlotNumber = slotnumber;
 
-        player.stackamount[slotnumber] -= 1;
-        StackChecking();
-        StartCoroutine(UIscript.inventoryReset());
+            player.EquippedItem = player.inventory[slotnumber];
+            UIscript.equipImg = EquipmentPanel.transform.Find("Equipped Image").GetComponent<Image>();
+            UIscript.equipImg.enabled = true;
+            UIscript.equipImg.sprite = player.EquippedItem.icon;
+            //player.stackamount[slotnumber] -= 1;
+            player.StackChecking(slotnumber);
+            StartCoroutine(UIscript.inventoryReset());
+
+            // become zero
+            if (player.StackChecking(slotnumber) == false){
+                UIscript.equipImg.enabled = false;
+                UIscript.equipImg.sprite = null;
+            }
+            UIscript.equipmentsetup(player.stackamount[player.EquippedSlotNumber]);
+        }
+        else
+        {
+            player.stackamount[slotnumber] -= 1;
+            player.StackChecking(slotnumber);
+            StartCoroutine(UIscript.inventoryReset());
+        }
     }
     
     public void itemRemove()
     {
         Debug.Log("remove" +item.ItemName);
         player.stackamount[slotnumber] -= 1;
-        StackChecking();
+        player.StackChecking(slotnumber);
         StartCoroutine(UIscript.inventoryReset());
         //drop item
         Instantiate(itemDB.items[item.ID], player.droplocation.transform.position, Quaternion.identity);
     }
 
-    public void StackChecking()
-    {
-        //check whether we used up all the stack
-        if (player.stackamount[slotnumber] == 0)
-        {
-            player.inventory.RemoveAt(slotnumber) ;
-            player.inventory.Add(null);
-            player.stackamount.Remove(player.stackamount[slotnumber]);
-            player.stackamount.Add(0);
-        }
-
-    }
 }

@@ -9,6 +9,11 @@ public class Player : MonoBehaviour
     public GameObject canvas;
     public UIscript UIscript;
     public GameObject droplocation;
+    
+    public Item EquippedItem;
+
+    //100 = no equipment
+    public int EquippedSlotNumber;
 
     private void Start()
     {
@@ -49,5 +54,23 @@ public class Player : MonoBehaviour
                 break;
             }
         }
+    }
+
+    public bool StackChecking(int slotnumber)
+    {
+        //check whether we used up all the stack
+        if (stackamount[slotnumber] == 0)
+        {
+           inventory.RemoveAt(slotnumber);
+           inventory.Add(null);
+           stackamount.Remove(stackamount[slotnumber]);
+           stackamount.Add(0);
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+
     }
 }
