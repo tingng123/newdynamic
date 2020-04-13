@@ -48,6 +48,7 @@ public class inventoryButton : MonoBehaviour
         Debug.Log("I used" + item.ItemName);
         if (item.type == "Projectile")
         {
+            Debug.Log("proj");
             player.EquippedSlotNumber = slotnumber;
 
             player.EquippedItem = player.inventory[slotnumber];

@@ -185,32 +185,37 @@ public class playercontroller : MonoBehaviour
 		//New attack system by CryOut
 		if (Input.GetKeyDown(KeyCode.Q))
 		{
-			if(player.EquippedItem == null) {
-				Debug.Log("no equippedItem");
-			}
-			Debug.Log("Attack Button (Projectile)");
 			if(player.EquippedItem != null && player.EquippedItem.type == "Projectile" && player.stackamount[player.EquippedSlotNumber] > 0)
 			{
+				if (player.EquippedItem.ID == 1)
+				{
+					// ID 1 : Glass Bottle
+					anim.SetTrigger("throw");
+					timeSincethrowAction = 0f;
+					throwglass(0);
+					timeSinceanim = 0f;
+					SoundManager.PlaySound(SoundManager.Sound.playerthrow);
+				}
+
+				if (player.EquippedItem.ID == 2)
+				{
+					// ID 2 : Brick
+					anim.SetTrigger("throw");
+					timeSincethrowAction = 0f;
+					throwbrick(0);
+					timeSinceanim = 0f;
+					SoundManager.PlaySound(SoundManager.Sound.playerthrow);
+				}
+
 				player.stackamount[player.EquippedSlotNumber] -= 1;
 				if (player.StackChecking(player.EquippedSlotNumber) == false)
 				{
-					Debug.Log("used all");
 					player.EquippedItem = null;
 					player.EquippedSlotNumber = 100;
 				}
-				else
-				{
-					Debug.Log("still have");
-				}
 				StartCoroutine(uIscript.inventoryReset());
 
-				Debug.Log("checked");
-				Debug.Log("ThrowGlass");
-				anim.SetTrigger("throw");
-				timeSincethrowAction = 0f;
-				throwglass(0);
-				timeSinceanim = 0f;
-				SoundManager.PlaySound(SoundManager.Sound.playerthrow);
+
 
 				//checking stack remained
 				//player.EquippedStackAmount -= 1;
