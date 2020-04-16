@@ -1,13 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class Player : MonoBehaviour
+public class PlayerInventory : MonoBehaviour
 {
     public List<Item> inventory = new List<Item>();
     public List<int> stackamount;
     public ItemDB itemDB;
     public GameObject canvas;
-    public UIscript UIscript;
+    public InventoryScript InventoryScript;
     public GameObject droplocation;
     
     public Item EquippedItem;
@@ -18,13 +18,14 @@ public class Player : MonoBehaviour
     private void Start()
     {
         itemDB = GameObject.Find("ItemDB").GetComponent<ItemDB>();
-        UIscript = GameObject.Find("MainCanvas").GetComponent<UIscript>();
+        InventoryScript = GameObject.Find("MainCanvas").GetComponent<InventoryScript>();
+        InventoryScript.PlayerInventory = this;
         droplocation = gameObject.transform.GetChild(0).gameObject;
     }
 
     public void additem(int id)
     {
-        StartCoroutine(UIscript.inventoryReset());
+        StartCoroutine(InventoryScript.inventoryReset());
         for (int i = 0; i < inventory.Count; i++)
         {
             //there is item inside inventory of player

@@ -6,10 +6,10 @@ using UnityEngine.UI;
 public class inventoryButton : MonoBehaviour
 {
     public Item item;
-    public Player player;
+    public PlayerInventory PlayerInventory;
     public int slotnumber;
     public Text text;
-    public UIscript UIscript;
+    public InventoryScript InventoryScript;
     public ItemDB itemDB;
     public Button CloseButton;
     public Button UseButton;
@@ -18,8 +18,9 @@ public class inventoryButton : MonoBehaviour
     private void Start()
     {
         itemDB = GameObject.Find("ItemDB").GetComponent<ItemDB>();
-        EquipmentPanel = UIscript.gameObject.transform.Find("EquipmentPanel").gameObject;
+        EquipmentPanel = InventoryScript.gameObject.transform.Find("InGameObj").gameObject.transform.Find("EquipmentPanel").gameObject;
     }
+
     public void ButtonSetUp()
     {
         CloseButton = gameObject.transform.GetChild(1).gameObject.GetComponent<Button>();
@@ -31,9 +32,9 @@ public class inventoryButton : MonoBehaviour
             CloseButton.gameObject.SetActive(true);
             UseButton.enabled = true;
         }
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-        UIscript = GameObject.Find("MainCanvas").GetComponent<UIscript>();
-        text.text = player.stackamount[slotnumber].ToString();
+        PlayerInventory = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInventory>();
+        InventoryScript = GameObject.Find("MainCanvas").GetComponent<InventoryScript>();
+        text.text = PlayerInventory.stackamount[slotnumber].ToString();
         //reset stack number in UI
         if (text.text == "0")
         {
@@ -49,39 +50,39 @@ public class inventoryButton : MonoBehaviour
         if (item.type == "Projectile")
         {
             Debug.Log("proj");
-            player.EquippedSlotNumber = slotnumber;
+            PlayerInventory.EquippedSlotNumber = slotnumber;
 
-            player.EquippedItem = player.inventory[slotnumber];
-            UIscript.equipImg = EquipmentPanel.transform.Find("Equipped Image").GetComponent<Image>();
-            UIscript.equipImg.enabled = true;
-            UIscript.equipImg.sprite = player.EquippedItem.icon;
+            PlayerInventory.EquippedItem = PlayerInventory.inventory[slotnumber];
+            InventoryScript.equipImg = EquipmentPanel.transform.Find("Equipped Image").GetComponent<Image>();
+            InventoryScript.equipImg.enabled = true;
+            InventoryScript.equipImg.sprite = PlayerInventory.EquippedItem.icon;
             //player.stackamount[slotnumber] -= 1;
-            player.StackChecking(slotnumber);
-            StartCoroutine(UIscript.inventoryReset());
+            PlayerInventory.StackChecking(slotnumber);
+            StartCoroutine(InventoryScript.inventoryReset());
 
             // become zero
-            if (player.StackChecking(slotnumber) == false){
-                UIscript.equipImg.enabled = false;
-                UIscript.equipImg.sprite = null;
+            if (PlayerInventory.StackChecking(slotnumber) == false){
+                InventoryScript.equipImg.enabled = false;
+                InventoryScript.equipImg.sprite = null;
             }
-            UIscript.equipmentsetup(player.stackamount[player.EquippedSlotNumber]);
+            InventoryScript.equipmentsetup(PlayerInventory.stackamount[PlayerInventory.EquippedSlotNumber]);
         }
         else
         {
-            player.stackamount[slotnumber] -= 1;
-            player.StackChecking(slotnumber);
-            StartCoroutine(UIscript.inventoryReset());
+            PlayerInventory.stackamount[slotnumber] -= 1;
+            PlayerInventory.StackChecking(slotnumber);
+            StartCoroutine(InventoryScript.inventoryReset());
         }
     }
     
     public void itemRemove()
     {
         Debug.Log("remove" +item.ItemName);
-        player.stackamount[slotnumber] -= 1;
-        player.StackChecking(slotnumber);
-        StartCoroutine(UIscript.inventoryReset());
+        PlayerInventory.stackamount[slotnumber] -= 1;
+        PlayerInventory.StackChecking(slotnumber);
+        StartCoroutine(InventoryScript.inventoryReset());
         //drop item
-        Instantiate(itemDB.items[item.ID], player.droplocation.transform.position, Quaternion.identity);
+        Instantiate(itemDB.items[item.ID], PlayerInventory.droplocation.transform.position, Quaternion.identity);
     }
 
 }

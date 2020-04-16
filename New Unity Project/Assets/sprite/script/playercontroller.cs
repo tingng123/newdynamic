@@ -62,8 +62,8 @@ public class playercontroller : MonoBehaviour
 	public float timeSinceanim = 0.0f;
 
 	//CryOut: varaible for new equipment and attack system
-	public Player player;
-	public UIscript uIscript;
+	public PlayerInventory PlayerInventory;
+	public InventoryScript InventoryScript;
 
 	// Update is called once per frame
 
@@ -73,8 +73,8 @@ public class playercontroller : MonoBehaviour
 	void Start()
 	{
 		//walk= GetComponent<AudioSource>();
-		player = this.GetComponent<Player>();
-		uIscript = GameObject.Find("MainCanvas").GetComponent<UIscript>();
+		PlayerInventory = this.GetComponent<PlayerInventory>();
+		InventoryScript = GameObject.Find("MainCanvas").GetComponent<InventoryScript>();
 	}
 
 
@@ -185,9 +185,9 @@ public class playercontroller : MonoBehaviour
 		//New attack system by CryOut
 		if (Input.GetKeyDown(KeyCode.Q))
 		{
-			if(player.EquippedItem != null && player.EquippedItem.type == "Projectile" && player.stackamount[player.EquippedSlotNumber] > 0)
+			if(PlayerInventory.EquippedItem != null && PlayerInventory.EquippedItem.type == "Projectile" && PlayerInventory.stackamount[PlayerInventory.EquippedSlotNumber] > 0)
 			{
-				if (player.EquippedItem.ID == 1)
+				if (PlayerInventory.EquippedItem.ID == 1)
 				{
 					// ID 1 : Glass Bottle
 					anim.SetTrigger("throw");
@@ -197,7 +197,7 @@ public class playercontroller : MonoBehaviour
 					SoundManager.PlaySound(SoundManager.Sound.playerthrow);
 				}
 
-				if (player.EquippedItem.ID == 2)
+				if (PlayerInventory.EquippedItem.ID == 2)
 				{
 					// ID 2 : Brick
 					anim.SetTrigger("throw");
@@ -207,25 +207,25 @@ public class playercontroller : MonoBehaviour
 					SoundManager.PlaySound(SoundManager.Sound.playerthrow);
 				}
 
-				player.stackamount[player.EquippedSlotNumber] -= 1;
-				if (player.StackChecking(player.EquippedSlotNumber) == false)
+				PlayerInventory.stackamount[PlayerInventory.EquippedSlotNumber] -= 1;
+				if (PlayerInventory.StackChecking(PlayerInventory.EquippedSlotNumber) == false)
 				{
-					player.EquippedItem = null;
-					player.EquippedSlotNumber = 100;
+					PlayerInventory.EquippedItem = null;
+					PlayerInventory.EquippedSlotNumber = 100;
 				}
-				StartCoroutine(uIscript.inventoryReset());
+				StartCoroutine(InventoryScript.inventoryReset());
 
 
 
 				//checking stack remained
 				//player.EquippedStackAmount -= 1;
-				if (player.EquippedSlotNumber != 100)
+				if (PlayerInventory.EquippedSlotNumber != 100)
 				{
-					uIscript.equipmentsetup(player.stackamount[player.EquippedSlotNumber]);
+					InventoryScript.equipmentsetup(PlayerInventory.stackamount[PlayerInventory.EquippedSlotNumber]);
 				}
 				else
 				{
-					uIscript.equipmentsetup(100);
+					InventoryScript.equipmentsetup(100);
 				}
 			}
 

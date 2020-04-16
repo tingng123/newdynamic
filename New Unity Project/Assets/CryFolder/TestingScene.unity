@@ -3072,7 +3072,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1255440940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3171,7 +3171,6 @@ RectTransform:
   m_Children:
   - {fileID: 1695078661}
   - {fileID: 2050707651}
-  - {fileID: 2046428006}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3192,6 +3191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 970060183e01c684e8caa58cce307a1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryScript: {fileID: 0}
 --- !u!4 &1274377246 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5543012676555653034, guid: a318304b37dafc840b9ab4c12cb004f9,
@@ -3447,7 +3447,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -5438,7 +5438,7 @@ MonoBehaviour:
   animCooldown: 1
   timeSinceanim: 0
   player: {fileID: 0}
-  uIscript: {fileID: 0}
+  InventoryScript: {fileID: 0}
 --- !u!212 &1996314857
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5600,7 +5600,7 @@ MonoBehaviour:
   stackamount: 000000000000000000000000000000000000000000000000
   itemDB: {fileID: 0}
   canvas: {fileID: 1255440939}
-  UIscript: {fileID: 0}
+  InventoryScript: {fileID: 0}
   droplocation: {fileID: 22513951}
   EquippedItem: {fileID: 0}
   EquippedSlotNumber: 100
@@ -5754,18 +5754,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2046428005}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1187744879}
   - {fileID: 1315281054}
-  m_Father: {fileID: 1255440944}
-  m_RootOrder: 2
+  m_Father: {fileID: 2050707651}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -925, y: -283}
+  m_AnchoredPosition: {x: -923, y: -283}
   m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2046428007
@@ -5839,6 +5839,7 @@ RectTransform:
   - {fileID: 1353772184}
   - {fileID: 1001430351}
   - {fileID: 1641614429}
+  - {fileID: 2046428006}
   m_Father: {fileID: 1255440944}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

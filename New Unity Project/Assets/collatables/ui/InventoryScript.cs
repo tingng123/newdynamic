@@ -3,27 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIscript : MonoBehaviour
+public class InventoryScript : MonoBehaviour
 {
     public GameObject InventoryBoard;
     public Button[] slots;
     public bool inventory_opened = false;
-    public Player player;
+    public PlayerInventory PlayerInventory;
     public Sprite buttonimg;
 
     public Text ProjectileNumber;
     public Image equipImg;
 
-    private void Start()
-    {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-    }
-
-    public void closeinventory()
+    public bool closeinventory()
     {
         InventoryBoard.SetActive(false);
         inventory_opened = false;
         ButtonClear();
+        return false;
     }
 
     public void ButtonClear()
@@ -34,11 +30,12 @@ public class UIscript : MonoBehaviour
             Destroy(slots[i].gameObject.GetComponent<Item>());
         }
     }
-    public void openinventory()
+    public bool openinventory()
     {
-        inventorysetup(player.inventory);
+        inventorysetup(PlayerInventory.inventory);
         InventoryBoard.SetActive(true);
         inventory_opened = true;
+        return true;
     }
 
     public void inventorysetup(List<Item> inventory)
@@ -64,7 +61,7 @@ public class UIscript : MonoBehaviour
                     slots[i].image.sprite = temp.icon;
                     //set stack text
                     Text text = slots[i].gameObject.GetComponentInChildren<Text>();
-                    text.text = player.stackamount[i].ToString();
+                    text.text = PlayerInventory.stackamount[i].ToString();
                 }
             }
         }
@@ -93,24 +90,24 @@ public class UIscript : MonoBehaviour
     {
         ButtonClear();
         yield return new WaitForEndOfFrame();
-        inventorysetup(player.inventory);
+        inventorysetup(PlayerInventory.inventory);
     }
 
 
-    private void Update()
-    {
-        //inventory menu
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            if (inventory_opened == true)
-            {
-                closeinventory();
-            }
-            else
-            {
-                openinventory();
-            }
-        }
-    }
+    //private void Update()
+    //{
+    //    //inventory menu
+    //    if (Input.GetKeyDown(KeyCode.I))
+    //    {
+    //        if (inventory_opened == true)
+    //        {
+    //            closeinventory();
+    //        }
+    //        else
+    //        {
+    //            openinventory();
+    //        }
+    //    }
+    //}
 
 }
