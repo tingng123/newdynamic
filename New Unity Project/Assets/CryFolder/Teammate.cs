@@ -34,6 +34,7 @@ public class Teammate : MonoBehaviour
                 Debug.Log("talk");
                 dialoguemanager.DialogueStart(gameObject.GetComponent<Dialogue>());
                 StartCoroutine(timer());
+                dialoguemanager.NextSentence();
             }
             if (Input.GetKeyDown(KeyCode.Z) && istalking == true && dialoguemanager.FirstDialogue == false)
             {
@@ -49,11 +50,9 @@ public class Teammate : MonoBehaviour
 
     IEnumerator timer()
     {
-        Debug.Log(false);
         timerbool = false;
         yield return new WaitForSeconds(0.1f);
         timerbool = true;
-        Debug.Log(true);
     }
     public void OnTriggerExit2D(Collider2D collision)
     {
@@ -61,6 +60,7 @@ public class Teammate : MonoBehaviour
         {
             talkboard.SetActive(false);
             readytotalk = false;
+            istalking = false;
         }
     }
 }

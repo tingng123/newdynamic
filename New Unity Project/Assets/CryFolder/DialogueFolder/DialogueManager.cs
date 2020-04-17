@@ -14,6 +14,7 @@ public class DialogueManager : MonoBehaviour
     public bool FirstDialogue;
     public bool displaying;
     public Dialogue currentDialogue;
+    public GameObject dialoguepanel;
     public GameObject optionpanel;
     public GameObject[] optionbuttons;
     public Text[] optiontext;
@@ -35,6 +36,7 @@ public class DialogueManager : MonoBehaviour
         {
             sentences.Enqueue(sentence);
         }
+        dialoguepanel.SetActive(true);
         NextSentence();
         DialogueSet = dialogue.gameObject.GetComponents<Dialogue>();
         SpeakerName.text = dialogue.NPC_name;
@@ -62,6 +64,7 @@ public class DialogueManager : MonoBehaviour
             else
             {
                 //reset
+                dialoguepanel.SetActive(false);
                 FirstDialogue = true;
                 currenttext = "";
                 DialogueText.text = currenttext;
@@ -74,7 +77,6 @@ public class DialogueManager : MonoBehaviour
             displaying = false;
             currenttext = fulltext;
             DialogueText.text = currenttext;
-
         }
         //normal process, display next sentence
         else
