@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class DialogueManager : MonoBehaviour
 {
     public Text DialogueText;
+    public Text SpeakerName;
     public string fulltext;
     public string currenttext;
     public Dialogue[] DialogueSet;
@@ -16,6 +17,7 @@ public class DialogueManager : MonoBehaviour
     public GameObject optionpanel;
     public GameObject[] optionbuttons;
     public Text[] optiontext;
+
 
     [SerializeField] public Queue<string> sentences = new Queue<string>();
     public void DialogueStart(Dialogue dialogue)
@@ -35,6 +37,7 @@ public class DialogueManager : MonoBehaviour
         }
         NextSentence();
         DialogueSet = dialogue.gameObject.GetComponents<Dialogue>();
+        SpeakerName.text = dialogue.NPC_name;
     }
 
     public void NextSentence()
@@ -44,10 +47,13 @@ public class DialogueManager : MonoBehaviour
         {
             if (currentDialogue.optionCheck == true)
             {
+                optionbuttons = new GameObject[currentDialogue.options.Length];
+                optiontext = new Text[currentDialogue.options.Length];
                 for (int i = 0; i < currentDialogue.options.Length; i++)
                 {
                     Debug.Log("option " + i + " is " + currentDialogue.options[i]);
                     optionbuttons[i] = optionpanel.transform.GetChild(i).gameObject;
+                    optionbuttons[i].SetActive(true);
                     optiontext[i] = optionbuttons[i].transform.GetChild(0).gameObject.GetComponent<Text>();
                     optiontext[i].text = currentDialogue.options[i];
                 }
@@ -88,6 +94,11 @@ public class DialogueManager : MonoBehaviour
                 currenttext = fulltext.Substring(0, i + 1);
                 DialogueText.text = currenttext;
                 yield return new WaitForSeconds(0.3f);
+
+                if (currenttext.Length == fulltext.Length && currentDialogue.optionCheck == true && sentences.Count == 0)
+                {
+                    NextSentence();
+                }
             }
         }
         displaying = false;
