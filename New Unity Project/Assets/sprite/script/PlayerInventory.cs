@@ -21,6 +21,11 @@ public class PlayerInventory : MonoBehaviour
         InventoryScript = GameObject.Find("MainCanvas").GetComponent<InventoryScript>();
         InventoryScript.PlayerInventory = this;
         droplocation = gameObject.transform.GetChild(0).gameObject;
+        //for (int i = 0; i < InventoryScript.slots.Length; i++)
+        //{
+        //    InventoryScript.slots[i].gameObject.GetComponent<inventoryButton>().InventoryScript = 
+        //}
+
     }
 
     public void additem(int id)

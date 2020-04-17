@@ -34,7 +34,7 @@ public class Teammate : MonoBehaviour
                 Debug.Log("talk");
                 dialoguemanager.DialogueStart(gameObject.GetComponent<Dialogue>());
                 StartCoroutine(timer());
-                dialoguemanager.NextSentence();
+                //dialoguemanager.NextSentence();
             }
             if (Input.GetKeyDown(KeyCode.Z) && istalking == true && dialoguemanager.FirstDialogue == false)
             {
