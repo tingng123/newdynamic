@@ -36,14 +36,11 @@ public class Teammate : MonoBehaviour
                 StartCoroutine(timer());
                 //dialoguemanager.NextSentence();
             }
-            if (Input.GetKeyDown(KeyCode.Z) && istalking == true && dialoguemanager.FirstDialogue == false)
+            if (Input.GetKeyDown(KeyCode.Z) && istalking == true && dialoguemanager.FirstDialogue == false && timerbool == true)
             {
-                if (timerbool == true)
-                {
                     StartCoroutine(timer());
                     Debug.Log("next");
                     dialoguemanager.NextSentence();
-                }
             }
         }
     }

@@ -200,8 +200,6 @@ void OnCollisionEnter2D(Collision2D collision)
 
     }
     
-
-
     void OnDestroy()
     {
         commonscript.BodyBreakDown(bodypart, transform.position);

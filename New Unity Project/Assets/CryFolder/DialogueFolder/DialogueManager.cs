@@ -95,7 +95,7 @@ public class DialogueManager : MonoBehaviour
             {
                 currenttext = fulltext.Substring(0, i + 1);
                 DialogueText.text = currenttext;
-                yield return new WaitForSeconds(0.3f);
+                yield return new WaitForSeconds(0.05f);
 
                 if (currenttext.Length == fulltext.Length && currentDialogue.optionCheck == true && sentences.Count == 0)
                 {

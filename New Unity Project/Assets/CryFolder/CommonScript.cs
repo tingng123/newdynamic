@@ -45,13 +45,15 @@ public class CommonScript : MonoBehaviour
         }
     }
 
-    public void StartGame()
+    public void StartGame(int sceneindex)
     {
         MainMenu.SetActive(false);
         InGameObj.SetActive(true);
         startmenu_opened = false;
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(sceneindex);
     }
+
+
 
     public void QuitGame()
     {

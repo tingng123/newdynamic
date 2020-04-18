@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/CryFolder/TestingScene.unity
     guid: ef856279d0b83314c957558df4d30f0f
+  - enabled: 1
+    path: Assets/Scenes/main.unity
+    guid: 69a4fb14d3a93b3479f244560ca0580d
   m_configObjects: {}
