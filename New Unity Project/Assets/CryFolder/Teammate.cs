@@ -67,6 +67,7 @@ public class Teammate : MonoBehaviour
             talkboard.SetActive(false);
             readytotalk = false;
             istalking = false;
+            dialoguemanager.DialogueReset();
         }
     }
 }

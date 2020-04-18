@@ -18,9 +18,8 @@ public class DialogueManager : MonoBehaviour
     public GameObject optionpanel;
     public GameObject[] optionbuttons;
     public Text[] optiontext;
+    public Queue<string> sentences = new Queue<string>();
 
-
-    [SerializeField] public Queue<string> sentences = new Queue<string>();
     public void DialogueStart(Dialogue dialogue)
     {
         if (FirstDialogue == true)
@@ -28,7 +27,6 @@ public class DialogueManager : MonoBehaviour
             DialogueSetOrder = 0;
             FirstDialogue = false;
         }
-
         currentDialogue = dialogue;
         sentences.Clear();
         //putting sentence inside dialogue class into the queue
@@ -63,11 +61,12 @@ public class DialogueManager : MonoBehaviour
             }
             else
             {
-                //reset
-                dialoguepanel.SetActive(false);
-                FirstDialogue = true;
-                currenttext = "";
-                DialogueText.text = currenttext;
+                DialogueReset();
+                ////reset
+                //dialoguepanel.SetActive(false);
+                //FirstDialogue = true;
+                //currenttext = "";
+                //DialogueText.text = currenttext;
             }
         }
 
@@ -84,6 +83,15 @@ public class DialogueManager : MonoBehaviour
             fulltext = sentences.Dequeue();
             StartCoroutine(DisplayDialogue());
         }
+    }
+
+    public void DialogueReset()
+    {
+        //reset
+        dialoguepanel.SetActive(false);
+        FirstDialogue = true;
+        currenttext = "";
+        DialogueText.text = currenttext;
     }
 
     IEnumerator DisplayDialogue() {
