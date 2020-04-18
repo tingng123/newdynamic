@@ -9,4 +9,6 @@ public class Dialogue: MonoBehaviour
     public string[] sentences;
     public bool optionCheck;
     public string[] options;
+
+    public List<Item> HandCarry = new List<Item>();
 }

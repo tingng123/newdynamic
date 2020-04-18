@@ -20,6 +20,10 @@ public class DialogueManager : MonoBehaviour
     public Text[] optiontext;
     public Queue<string> sentences = new Queue<string>();
 
+    //item system
+    public GameObject currentNPC;
+    public NPC currentNPCstat;
+
     public void DialogueStart(Dialogue dialogue)
     {
         if (FirstDialogue == true)
@@ -35,6 +39,7 @@ public class DialogueManager : MonoBehaviour
             sentences.Enqueue(sentence);
         }
         dialoguepanel.SetActive(true);
+        currentNPCstat = currentNPC.GetComponent<NPC>();
         NextSentence();
         DialogueSet = dialogue.gameObject.GetComponents<Dialogue>();
         SpeakerName.text = dialogue.NPC_name;
@@ -45,6 +50,12 @@ public class DialogueManager : MonoBehaviour
         //Clearing of the sentence;
         if (sentences.Count == 0)
         {
+            //item system
+            if(currentDialogue.HandCarry.Count >= 1)
+            {
+                Debug.Log("hand carry");
+            }
+
             if (currentDialogue.optionCheck == true)
             {
                 optionbuttons = new GameObject[currentDialogue.options.Length];
@@ -61,6 +72,7 @@ public class DialogueManager : MonoBehaviour
             }
             else
             {
+                currentNPCstat.talked = true;
                 DialogueReset();
                 ////reset
                 //dialoguepanel.SetActive(false);
@@ -69,32 +81,38 @@ public class DialogueManager : MonoBehaviour
                 //DialogueText.text = currenttext;
             }
         }
-
-        // Quickly show the whole sentence
-        if (displaying == true)
-        {
-            displaying = false;
-            currenttext = fulltext;
-            DialogueText.text = currenttext;
-        }
-        //normal process, display next sentence
         else
         {
-            fulltext = sentences.Dequeue();
-            StartCoroutine(DisplayDialogue());
+            // Quickly show the whole sentence
+            if (displaying == true)
+            {
+                displaying = false;
+                currenttext = fulltext;
+                DialogueText.text = currenttext;
+            }
+            //normal process, display next sentence
+            else
+            {
+                fulltext = sentences.Dequeue();
+                StartCoroutine(DisplayDialogue());
+            }
         }
     }
 
     public void DialogueReset()
     {
         //reset
+
         dialoguepanel.SetActive(false);
         FirstDialogue = true;
         currenttext = "";
         DialogueText.text = currenttext;
+        optionpanel.SetActive(false);
+        currentNPC = null;
     }
 
-    IEnumerator DisplayDialogue() {
+    IEnumerator DisplayDialogue()
+    {
         displaying = true;
         //keyboard typing display style
         for (int i = 0; i < fulltext.Length; i ++)
@@ -121,5 +139,4 @@ public class DialogueManager : MonoBehaviour
         DialogueStart(DialogueSet[DialogueSetOrder]);
         optionpanel.SetActive(false);
     }
-
 }
