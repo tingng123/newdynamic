@@ -345,6 +345,12 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &190197464 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 604204488823577846, guid: e6678bbbaa93fe0428cd6d8decffa26b,
+    type: 3}
+  m_PrefabInstance: {fileID: 3196610568409326590}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &300465585
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4310,6 +4316,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3196610569743215142, guid: e6678bbbaa93fe0428cd6d8decffa26b,
+        type: 3}
+      propertyPath: test
+      value: 
+      objectReference: {fileID: 190197464}
     - target: {fileID: 3196610569743215145, guid: e6678bbbaa93fe0428cd6d8decffa26b,
         type: 3}
       propertyPath: m_LocalPosition.x

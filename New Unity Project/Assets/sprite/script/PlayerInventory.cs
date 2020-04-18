@@ -9,7 +9,8 @@ public class PlayerInventory : MonoBehaviour
     public GameObject canvas;
     public InventoryScript InventoryScript;
     public GameObject droplocation;
-    
+
+
     public Item EquippedItem;
 
     //100 = no equipment

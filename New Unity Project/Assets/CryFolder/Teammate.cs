@@ -9,39 +9,48 @@ public class Teammate : MonoBehaviour
     public bool istalking;
     public DialogueManager dialoguemanager;
     public bool timerbool;
-
+    public GameObject test;
+    public bool talkinput;
     public void Start()
     {
         talkboard = gameObject.transform.GetChild(0).gameObject;
         dialoguemanager = GameObject.Find("MainCanvas").gameObject.GetComponent<DialogueManager>();
     }
+
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            talkinput = true;
+        }
+        else
+        {
+            talkinput = false;
+        }
+
+        if (readytotalk == true)
+        {
+            if (talkinput == true && istalking == false)
+            {
+                istalking = true;
+                dialoguemanager.DialogueStart(gameObject.GetComponent<Dialogue>());
+                StartCoroutine(timer());
+                //dialoguemanager.NextSentence();
+            }
+            if (talkinput == true && istalking == true && dialoguemanager.FirstDialogue == false && timerbool == true)
+            {
+                StartCoroutine(timer());
+                dialoguemanager.NextSentence();
+            }
+        }
+    }
+
     public void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
             talkboard.SetActive(true);
             readytotalk = true;
-        }
-    }
-
-    public void OnTriggerStay2D(Collider2D collision)
-    {
-        if (readytotalk == true)
-        {
-            if (Input.GetKeyDown(KeyCode.Z) && istalking == false)
-            {
-                istalking = true;
-                Debug.Log("talk");
-                dialoguemanager.DialogueStart(gameObject.GetComponent<Dialogue>());
-                StartCoroutine(timer());
-                //dialoguemanager.NextSentence();
-            }
-            if (Input.GetKeyDown(KeyCode.Z) && istalking == true && dialoguemanager.FirstDialogue == false && timerbool == true)
-            {
-                    StartCoroutine(timer());
-                    Debug.Log("next");
-                    dialoguemanager.NextSentence();
-            }
         }
     }
 
