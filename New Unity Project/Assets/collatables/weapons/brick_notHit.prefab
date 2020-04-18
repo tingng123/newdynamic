@@ -7,16 +7,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7957309688718107526, guid: d6f18d4bc0018524cb8020744cc74cd5,
-        type: 3}
-      propertyPath: m_Name
-      value: brick_notHit
-      objectReference: {fileID: 0}
-    - target: {fileID: 7957309688718107526, guid: d6f18d4bc0018524cb8020744cc74cd5,
-        type: 3}
-      propertyPath: m_TagString
-      value: Untagged
-      objectReference: {fileID: 0}
     - target: {fileID: 7957309688718107523, guid: d6f18d4bc0018524cb8020744cc74cd5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -71,6 +61,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7957309688718107526, guid: d6f18d4bc0018524cb8020744cc74cd5,
+        type: 3}
+      propertyPath: m_Name
+      value: brick_notHit
+      objectReference: {fileID: 0}
+    - target: {fileID: 7957309688718107526, guid: d6f18d4bc0018524cb8020744cc74cd5,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 7957309688718107527, guid: d6f18d4bc0018524cb8020744cc74cd5,
         type: 3}
