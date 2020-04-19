@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -4437,6 +4437,28 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 552351704328922951, guid: e1be5c2256caef74bb0a8d597a414cf3,
+        type: 3}
+      propertyPath: HandCarry.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 552351704328922951, guid: e1be5c2256caef74bb0a8d597a414cf3,
+        type: 3}
+      propertyPath: HandCarry.Array.data[1]
+      value: 
+      objectReference: {fileID: 9124545718530666253, guid: e13bbc898a00b4440a935b44ef142e76,
+        type: 3}
+    - target: {fileID: 552351704328922951, guid: e1be5c2256caef74bb0a8d597a414cf3,
+        type: 3}
+      propertyPath: HandCarry.Array.data[2]
+      value: 
+      objectReference: {fileID: 9124545718530666253, guid: e13bbc898a00b4440a935b44ef142e76,
+        type: 3}
+    - target: {fileID: 552351704328922951, guid: e1be5c2256caef74bb0a8d597a414cf3,
+        type: 3}
+      propertyPath: HandCarry.Array.data[3]
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5566431729432395448, guid: e1be5c2256caef74bb0a8d597a414cf3,
         type: 3}
       propertyPath: m_Name

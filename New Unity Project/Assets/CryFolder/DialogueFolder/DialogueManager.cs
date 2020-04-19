@@ -24,6 +24,8 @@ public class DialogueManager : MonoBehaviour
     public GameObject currentNPC;
     public NPC currentNPCstat;
     public PlayerInventory playerinventory;
+    public GameObject InformationPanel;
+    public ItemDB itemdb;
 
     public void DialogueStart(Dialogue dialogue)
     {
@@ -56,8 +58,29 @@ public class DialogueManager : MonoBehaviour
             {
                 Debug.Log("hand carry");
                 playerinventory  = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInventory>();
-                playerinventory.additem(currentDialogue.HandCarry[0].ID);
+                int loopNumber = currentDialogue.HandCarry.Count;
+                Item item = currentDialogue.HandCarry[0];
+                for (int i = 0; i< loopNumber; i++)
+                {
+                    Debug.Log(currentDialogue.HandCarry.Count);
+                    if (currentDialogue.HandCarry.Count > 0)
+                    {
+                        if(currentDialogue.HandCarry[0] != null)
+                        {
+                            Debug.Log("test");
+                            playerinventory.additem(currentDialogue.HandCarry[0].ID);
+                            currentDialogue.HandCarry.RemoveAt(0);
+                        }
+                    }
+                }
+                Debug.Log("finished");
+                itemdb = GameObject.Find("ItemDB").GetComponent<ItemDB>();
+                InformationPanel.transform.GetChild(0).gameObject.GetComponent<Image>().sprite = itemdb.items[item.ID].icon;
+                InformationPanel.transform.GetChild(1).gameObject.GetComponent<Text>().text = "你獲得了" + itemdb.items[item.ID].ItemName + " " + loopNumber + "個。";
+                StartCoroutine(InfoDisplay());
             }
+
+
 
             if (currentDialogue.optionCheck == true)
             {
@@ -77,11 +100,6 @@ public class DialogueManager : MonoBehaviour
             {
                 currentNPCstat.talked = true;
                 DialogueReset();
-                ////reset
-                //dialoguepanel.SetActive(false);
-                //FirstDialogue = true;
-                //currenttext = "";
-                //DialogueText.text = currenttext;
             }
         }
         else
@@ -140,5 +158,31 @@ public class DialogueManager : MonoBehaviour
         DialogueSetOrder += chosennumber;
         DialogueStart(DialogueSet[DialogueSetOrder]);
         optionpanel.SetActive(false);
+    }
+
+    //called to display information in the middle of the screen
+    IEnumerator InfoDisplay()
+    {
+        InformationPanel.SetActive(true);
+        Color imgColor = InformationPanel.GetComponent<Image>().color;
+        Color itemColor = InformationPanel.transform.GetChild(0).gameObject.GetComponent<Image>().color;
+        Color textColor = InformationPanel.transform.GetChild(1).gameObject.GetComponent<Text>().color;
+        imgColor.a = 1;
+        itemColor.a = 1;
+        while (imgColor.a > 0)
+        {
+            imgColor.a -= 0.01f;
+            itemColor.a -= 0.01f;
+            textColor.a -= 0.01f;
+            InformationPanel.GetComponent<Image>().color = imgColor;
+            InformationPanel.transform.GetChild(0).gameObject.GetComponent<Image>().color = itemColor;
+            InformationPanel.transform.GetChild(1).gameObject.GetComponent<Text>().color = textColor;
+            yield return new WaitForSeconds(0.05f);
+        }
+        if (imgColor.a < 0)
+        {
+            InformationPanel.SetActive(false);
+        }
+
     }
 }

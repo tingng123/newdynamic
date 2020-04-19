@@ -5,17 +5,21 @@ using UnityEngine.UI;
 
 public class InventoryScript : MonoBehaviour
 {
+    //inventory
     public GameObject InventoryBoard;
     public Button[] slots;
     public bool inventory_opened = false;
     public PlayerInventory PlayerInventory;
     public Sprite buttonimg;
 
+    //equipment
+    public GameObject EquipmentBoard;
     public Text ProjectileNumber;
     public Image equipImg;
 
     public bool closeinventory()
     {
+        EquipmentBoard.SetActive(false);
         InventoryBoard.SetActive(false);
         inventory_opened = false;
         ButtonClear();
@@ -33,6 +37,7 @@ public class InventoryScript : MonoBehaviour
     public bool openinventory()
     {
         inventorysetup(PlayerInventory.inventory);
+        EquipmentBoard.SetActive(true);
         InventoryBoard.SetActive(true);
         inventory_opened = true;
         return true;
@@ -92,22 +97,4 @@ public class InventoryScript : MonoBehaviour
         yield return new WaitForEndOfFrame();
         inventorysetup(PlayerInventory.inventory);
     }
-
-
-    //private void Update()
-    //{
-    //    //inventory menu
-    //    if (Input.GetKeyDown(KeyCode.I))
-    //    {
-    //        if (inventory_opened == true)
-    //        {
-    //            closeinventory();
-    //        }
-    //        else
-    //        {
-    //            openinventory();
-    //        }
-    //    }
-    //}
-
 }

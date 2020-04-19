@@ -33,7 +33,6 @@ public class inventoryButton : MonoBehaviour
             UseButton.enabled = true;
         }
         PlayerInventory = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInventory>();
-        Debug.Log(GameObject.FindGameObjectWithTag("Player").name);
         InventoryScript = GameObject.Find("MainCanvas").GetComponent<InventoryScript>();
         text.text = PlayerInventory.stackamount[slotnumber].ToString();
         //reset stack number in UI
