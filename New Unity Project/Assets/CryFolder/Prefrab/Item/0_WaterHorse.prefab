@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ID: 0
-  ItemName: roadblock_waterhorse
+  ItemName: "\u6C34\u99AC"
   icon: {fileID: -8628631289662865008, guid: 88d7fae1a0e05c443b25e654beb8303e, type: 3}
   maxamount: 10
   type: Block

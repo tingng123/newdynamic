@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ID: 2
-  ItemName: Brick
+  ItemName: "\u534A\u78DA"
   icon: {fileID: 21300000, guid: 8b83fadc8c787ab4c9b37e508b109832, type: 3}
   maxamount: 10
   type: Projectile
