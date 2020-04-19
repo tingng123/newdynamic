@@ -23,6 +23,7 @@ public class DialogueManager : MonoBehaviour
     //item system
     public GameObject currentNPC;
     public NPC currentNPCstat;
+    public PlayerInventory playerinventory;
 
     public void DialogueStart(Dialogue dialogue)
     {
@@ -50,10 +51,12 @@ public class DialogueManager : MonoBehaviour
         //Clearing of the sentence;
         if (sentences.Count == 0)
         {
-            //item system
+            //item system (Getting item from NPC)
             if(currentDialogue.HandCarry.Count >= 1)
             {
                 Debug.Log("hand carry");
+                playerinventory  = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInventory>();
+                playerinventory.additem(currentDialogue.HandCarry[0].ID);
             }
 
             if (currentDialogue.optionCheck == true)
@@ -102,7 +105,6 @@ public class DialogueManager : MonoBehaviour
     public void DialogueReset()
     {
         //reset
-
         dialoguepanel.SetActive(false);
         FirstDialogue = true;
         currenttext = "";
