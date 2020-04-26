@@ -19,6 +19,7 @@ public class DialogueManager : MonoBehaviour
     public GameObject[] optionbuttons;
     public Text[] optiontext;
     public Queue<string> sentences = new Queue<string>();
+    public playercontroller playercontroller;
 
     //item system
     public GameObject currentNPC;

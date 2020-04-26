@@ -9,7 +9,8 @@ public class PlayerInventory : MonoBehaviour
     public GameObject canvas;
     public InventoryScript InventoryScript;
     public GameObject droplocation;
-
+    public bool CanPickUp;
+    public GameObject pickupobj = null;
 
     public Item EquippedItem;
 
@@ -78,6 +79,32 @@ public class PlayerInventory : MonoBehaviour
         {
             return true;
         }
+    }
 
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Pickable")
+        {
+            CanPickUp = true;
+            pickupobj = collision.gameObject;
+        }
+    }
+
+    public void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Pickable")
+        {
+            CanPickUp = false;
+            pickupobj = null;
+        }
+    }
+
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.E) && CanPickUp == true)
+        {
+            Debug.Log("pick up");
+            pickupobj.gameObject.GetComponent<Item>().pikcup(this);
+        }
     }
 }

@@ -64,6 +64,9 @@ MonoBehaviour:
   icon: {fileID: -8628631289662865008, guid: 88d7fae1a0e05c443b25e654beb8303e, type: 3}
   maxamount: 10
   type: Block
+  damage: 0
+  healing: 0
+  durability: 0
 --- !u!1001 &9189329357612217867
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -75,6 +78,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: 0_WaterHorse
+      objectReference: {fileID: 0}
+    - target: {fileID: 2903580000665945519, guid: a9433d30a1eec9a4ba9a30ad7a6ead13,
+        type: 3}
+      propertyPath: m_TagString
+      value: Pickable
       objectReference: {fileID: 0}
     - target: {fileID: 3699728935746279329, guid: a9433d30a1eec9a4ba9a30ad7a6ead13,
         type: 3}

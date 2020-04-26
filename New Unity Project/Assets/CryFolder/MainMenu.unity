@@ -3759,10 +3759,12 @@ MonoBehaviour:
   optionpanel: {fileID: 948048490}
   optionbuttons: []
   optiontext: []
+  playercontroller: {fileID: 0}
   currentNPC: {fileID: 0}
   currentNPCstat: {fileID: 0}
   playerinventory: {fileID: 0}
   InformationPanel: {fileID: 1561403619}
+  itemdb: {fileID: 0}
 --- !u!224 &1897847731 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5985513512463151380, guid: ca4c8efb47fe96e4b8fec11f29b8f709,

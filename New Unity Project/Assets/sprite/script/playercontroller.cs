@@ -64,6 +64,10 @@ public class playercontroller : MonoBehaviour
 	//CryOut: varaible for new equipment and attack system
 	public PlayerInventory PlayerInventory;
 	public InventoryScript InventoryScript;
+	//CryOut: Dialgoue system
+	public DialogueManager dialoguemanager;
+	//CryOut: PlayerStat
+	public int playerhp;
 
 	// Update is called once per frame
 

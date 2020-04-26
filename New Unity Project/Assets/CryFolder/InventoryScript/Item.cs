@@ -10,17 +10,25 @@ public class Item : MonoBehaviour
     public Sprite icon;
     public int maxamount;
     public string type;
+    public int damage;
+    public int healing;
+    public int durability;
 
-    
 
     public virtual void OnTriggerEnter2D(Collider2D collision)
     {
-
-    //    Physics.IgnoreCollision(collision.collider2D, GetComponent<Collider>());
         if (collision.gameObject.tag == "Player" )
         {
-            collision.gameObject.GetComponent<PlayerInventory>().additem(this.GetComponent<Item>().ID);
-            Destroy(this.gameObject);
+            Debug.Log("enter");
+            collision.gameObject.GetComponent<PlayerInventory>().CanPickUp = true;
         }
+    }
+
+    public void pikcup(PlayerInventory inventory)
+    {
+        Debug.Log("pick");
+        inventory.additem(this.GetComponent<Item>().ID);
+        Destroy(this.gameObject);
+        inventory.gameObject.GetComponent<PlayerInventory>().CanPickUp = false;
     }
 }

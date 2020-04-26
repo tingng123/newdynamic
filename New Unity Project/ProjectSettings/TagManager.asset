@@ -4,11 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Enemy
-  - brick
   - ground
   - weapon
   - NPC
+  - Pickable
+  - Enemy
   layers:
   - Default
   - TransparentFX

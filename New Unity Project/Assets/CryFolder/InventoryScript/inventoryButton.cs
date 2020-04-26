@@ -19,6 +19,7 @@ public class inventoryButton : MonoBehaviour
     {
         itemDB = GameObject.Find("ItemDB").GetComponent<ItemDB>();
         EquipmentPanel = InventoryScript.gameObject.transform.Find("InGameObj").gameObject.transform.Find("EquipmentPanel").gameObject;
+        InventoryScript.equipImg = EquipmentPanel.transform.Find("Equipped Image").GetComponent<Image>();
     }
 
     public void ButtonSetUp()
@@ -53,7 +54,6 @@ public class inventoryButton : MonoBehaviour
             PlayerInventory.EquippedSlotNumber = slotnumber;
 
             PlayerInventory.EquippedItem = PlayerInventory.inventory[slotnumber];
-            InventoryScript.equipImg = EquipmentPanel.transform.Find("Equipped Image").GetComponent<Image>();
             InventoryScript.equipImg.enabled = true;
             InventoryScript.equipImg.sprite = PlayerInventory.EquippedItem.icon;
             //player.stackamount[slotnumber] -= 1;
@@ -66,15 +66,25 @@ public class inventoryButton : MonoBehaviour
                 InventoryScript.equipImg.sprite = null;
             }
             InventoryScript.equipmentsetup(PlayerInventory.stackamount[PlayerInventory.EquippedSlotNumber]);
-        }
-        else
+        } else if(item.type == "Consumable")
         {
-            PlayerInventory.stackamount[slotnumber] -= 1;
-            PlayerInventory.StackChecking(slotnumber);
-            StartCoroutine(InventoryScript.inventoryReset());
+            Debug.Log("consumable");
+            
+            InventoryRefresh();
+
+        } else
+        {
+            InventoryRefresh();
         }
     }
     
+    public void InventoryRefresh()
+    {
+        PlayerInventory.stackamount[slotnumber] -= 1;
+        PlayerInventory.StackChecking(slotnumber);
+        StartCoroutine(InventoryScript.inventoryReset());
+    }
+
     public void itemRemove()
     {
         Debug.Log("remove" +item.ItemName);
